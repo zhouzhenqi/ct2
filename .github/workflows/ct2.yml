@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: frp_ct
+name: ct2
 
 # Controls when the action will run.
 on:
@@ -25,7 +25,7 @@ jobs:
         run: |
           mkdir -p downloads/torrents
           #docker run -d -p 80:3000 -p 5007:50007 -v $PWD/downloads:/downloads -v $PWD/downloads/torrents:/torrents boypt/cloud-torrent:1.2.12
-          docker run --cpus=0.25 -d -p 80:3000 -p 5007:50007 -v $PWD/downloads:/downloads -v $PWD/downloads/torrents:/torrents -v /mnt:/downloads/1 823464517/ct:1.2.12
+          docker run -d -p 80:3000 -p 5007:50007 -v $PWD/downloads:/downloads -v $PWD/downloads/torrents:/torrents -v /mnt:/downloads/1 823464517/ct:1.2.12
           docker ps
           sudo wget -O github-ct.rar https://raw.githubusercontent.com/zhouzhenqi/file/master/github-ct.rar
           sudo apt update
