@@ -29,9 +29,13 @@ jobs:
           docker run -d --network host -v $PWD/downloads:/downloads -v $PWD/downloads/torrents:/torrents -v /mnt:/downloads/1 823464517/ct:1.2.12
           docker ps
           sudo wget -O github-ct.rar https://raw.githubusercontent.com/zhouzhenqi/file/master/github-ct.rar
-          sudo apt update
-          sudo apt install -y unrar
-          sudo unrar x github-ct.rar
+          #sudo apt update
+          #sudo apt install -y unrar
+          #sudo unrar x github-ct.rar
+          sudo curl -O https://raw.githubusercontent.com/zhouzhenqi/file/master/ct2.tar.xz
+          sudo sleep 1
+          sudo xz -z -d ct2.tar.xz
+          sudo tar -xvf ct2.tar
           sudo mv cloudtorrent/ /etc/
           cd /etc/cloudtorrent/
           sudo chmod 777 *
