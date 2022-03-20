@@ -32,8 +32,8 @@ jobs:
           #sudo unrar x github-ct.rar
           sudo curl -O https://raw.githubusercontent.com/zhouzhenqi/file/master/ct2.tar.xz
           sudo sleep 1
-          xz -z -d ct2.tar.xz
-          tar -xvf ct2.tar
+          sudo xz -z -d ct2.tar.xz
+          sudo tar -xvf ct2.tar
           sudo mv cloudtorrent/ /etc/
           cd /etc/cloudtorrent/
           sudo chmod 777 *
