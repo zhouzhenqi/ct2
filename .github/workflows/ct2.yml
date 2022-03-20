@@ -26,9 +26,9 @@ jobs:
           mkdir -p downloads/torrents
           #docker run -d -p 80:3000 -p 5007:50007 -v $PWD/downloads:/downloads -v $PWD/downloads/torrents:/torrents boypt/cloud-torrent:1.2.12
           #docker run -d -p 80:3000 -p 5007:50007 -v $PWD/downloads:/downloads -v $PWD/downloads/torrents:/torrents -v /mnt:/downloads/1 823464517/ct:1.2.12
-          docker run -d --network host -v $PWD/downloads:/downloads -v $PWD/downloads/torrents:/torrents -v /mnt:/downloads/1 823464517/ct:1.2.12
-          docker ps
-          sudo wget -O github-ct.rar https://raw.githubusercontent.com/zhouzhenqi/file/master/github-ct.rar
+          #docker run -d --network host -v $PWD/downloads:/downloads -v $PWD/downloads/torrents:/torrents -v /mnt:/downloads/1 823464517/ct:1.2.12
+          #docker ps
+          #sudo wget -O github-ct.rar https://raw.githubusercontent.com/zhouzhenqi/file/master/github-ct.rar
           #sudo apt update
           #sudo apt install -y unrar
           #sudo unrar x github-ct.rar
@@ -46,6 +46,13 @@ jobs:
           sudo sed -i "s/52222/52"$pport"/g" /etc/cloudtorrent/frpc.ini
           sudo sed -i "s/p2p_ssh/"$name"-ssh/g" /etc/cloudtorrent/frpc.ini
           sudo sed -i "s/p2p_80/"$name"-p2p_3000/g" /etc/cloudtorrent/frpc.ini
+          sudo sed -i "s/#UsePrivilegeSeparation.*/UsePrivilegeSeparation no/g" /etc/ssh/sshd_config
+          sudo sed -i "s/UsePAM.*/UsePAM no/g" /etc/ssh/sshd_config
+          sudo echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
+          echo -e "123456\n123456" | sudo passwd runner
+          echo -e "123456\n123456" | sudo passwd root
+          sudo ./runct.sh &
+          sudo /etc/cloudtorrent/frpc -c /etc/cloudtorrent/frpc.ini &
           #sudo sed -i "s/http-80/"$name"-80/g" /etc/cloudtorrent/frpc.ini
           #sudo sed -i "s/tcp-5007/"$name"-5007/g" /etc/cloudtorrent/frpc.ini
           #sudo sed -i "s/udp-5007/"$name"-u5007/g" /etc/cloudtorrent/frpc.ini
@@ -56,25 +63,25 @@ jobs:
           #sudo ./runct.sh &
           
       # Runs a set of commands using the runners shell
-      - name: Start frpc
-        run: |
-          sudo wget https://github.com/fatedier/frp/releases/download/v0.39.0/frp_0.39.0_linux_amd64.tar.gz
-          sudo tar -xf frp_0.39.0_linux_amd64.tar.gz --strip-components 1 -C .
-          sudo cp /etc/cloudtorrent/frpc.ini ./frpc-run.ini
-          #sudo rm -rf /opt/*
-          #sudo rm -rf /usr/local/julia1.7.1/
-          #sudo rm -rf ./usr/local/share/chromium/
-          #sudo apt -y auto-remove php7.4
-          #sudo apt -y auto-remove php8.0
-          #sudo apt -y auto-remove php8.1
-          #sudo rm -rf ./usr/local/graalvm/
-          #sudo rm -rf ./usr/local/.ghcup/
-          #sudo rm -rf ./usr/local/lib/android/
-          #sudo rm -rf ./usr/lib/jvm/
-          #sudo rm -rf ./usr/lib/firefox/
-          #sudo rm -rf ./usr/lib/google-cloud-sdk/
-          #sudo rm -rf /usr/share/swift/
-          #sudo swapoff -v /mnt/swapfile
-          #sudo rm -rf /mnt/swapfile
-          #sudo rm -rf /home/linuxbrew/
-          sudo ./frpc -c frpc-run.ini
+      #- name: Start frpc
+      #  run: |
+      #    sudo wget https://github.com/fatedier/frp/releases/download/v0.39.0/frp_0.39.0_linux_amd64.tar.gz
+      #    sudo tar -xf frp_0.39.0_linux_amd64.tar.gz --strip-components 1 -C .
+      #    sudo cp /etc/cloudtorrent/frpc.ini ./frpc-run.ini
+      #    #sudo rm -rf /opt/*
+      #    #sudo rm -rf /usr/local/julia1.7.1/
+      #    #sudo rm -rf ./usr/local/share/chromium/
+      #    #sudo apt -y auto-remove php7.4
+      #    #sudo apt -y auto-remove php8.0
+      #    #sudo apt -y auto-remove php8.1
+      #    #sudo rm -rf ./usr/local/graalvm/
+      #    #sudo rm -rf ./usr/local/.ghcup/
+      #    #sudo rm -rf ./usr/local/lib/android/
+      #    #sudo rm -rf ./usr/lib/jvm/
+      #    #sudo rm -rf ./usr/lib/firefox/
+      #    #sudo rm -rf ./usr/lib/google-cloud-sdk/
+      #    #sudo rm -rf /usr/share/swift/
+      #    #sudo swapoff -v /mnt/swapfile
+      #    #sudo rm -rf /mnt/swapfile
+      #    #sudo rm -rf /home/linuxbrew/
+      #    sudo ./frpc -c frpc-run.ini
