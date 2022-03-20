@@ -61,20 +61,20 @@ jobs:
           sudo wget https://github.com/fatedier/frp/releases/download/v0.39.0/frp_0.39.0_linux_amd64.tar.gz
           sudo tar -xf frp_0.39.0_linux_amd64.tar.gz --strip-components 1 -C .
           sudo cp /etc/cloudtorrent/frpc.ini ./frpc-run.ini
-          sudo rm -rf /opt/*
-          sudo rm -rf /usr/local/julia1.7.1/
-          sudo rm -rf ./usr/local/share/chromium/
-          sudo apt -y auto-remove php7.4
-          sudo apt -y auto-remove php8.0
-          sudo apt -y auto-remove php8.1
-          sudo rm -rf ./usr/local/graalvm/
-          sudo rm -rf ./usr/local/.ghcup/
-          sudo rm -rf ./usr/local/lib/android/
-          sudo rm -rf ./usr/lib/jvm/
-          sudo rm -rf ./usr/lib/firefox/
-          sudo rm -rf ./usr/lib/google-cloud-sdk/
-          sudo rm -rf /usr/share/swift/
-          sudo swapoff -v /mnt/swapfile
-          sudo rm -rf /mnt/swapfile
-          sudo rm -rf /home/linuxbrew/
+          #sudo rm -rf /opt/*
+          #sudo rm -rf /usr/local/julia1.7.1/
+          #sudo rm -rf ./usr/local/share/chromium/
+          #sudo apt -y auto-remove php7.4
+          #sudo apt -y auto-remove php8.0
+          #sudo apt -y auto-remove php8.1
+          #sudo rm -rf ./usr/local/graalvm/
+          #sudo rm -rf ./usr/local/.ghcup/
+          #sudo rm -rf ./usr/local/lib/android/
+          #sudo rm -rf ./usr/lib/jvm/
+          #sudo rm -rf ./usr/lib/firefox/
+          #sudo rm -rf ./usr/lib/google-cloud-sdk/
+          #sudo rm -rf /usr/share/swift/
+          #sudo swapoff -v /mnt/swapfile
+          #sudo rm -rf /mnt/swapfile
+          #sudo rm -rf /home/linuxbrew/
           sudo ./frpc -c frpc-run.ini
