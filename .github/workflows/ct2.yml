@@ -19,7 +19,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Start Ct
         run: |
@@ -72,4 +72,6 @@ jobs:
           sudo rm -rf ./usr/lib/google-cloud-sdk/
           sudo rm -rf /usr/share/swift/
           sudo rm -rf /home/linuxbrew/
-          sudo ./frpc -c frpc-run.ini
+          sudo ./frpc -c frpc-run.ini &
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
