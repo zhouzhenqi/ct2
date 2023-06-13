@@ -58,8 +58,8 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Start frpc
         run: |
-          sudo wget https://github.com/fatedier/frp/releases/download/v0.40.0/frp_0.40.0_linux_amd64.tar.gz
-          sudo tar -xf frp_0.40.0_linux_amd64.tar.gz --strip-components 1 -C .
+          sudo wget https://github.com/fatedier/frp/releases/download/v0.49.0/frp_0.49.0_linux_amd64.tar.gz
+          sudo tar -xf frp_0.49.0_linux_amd64.tar.gz --strip-components 1 -C .
           sudo cp /etc/cloudtorrent/frpc.ini ./frpc-run.ini
           sudo rm -rf /opt/*
           sudo rm -rf /usr/local/julia1.7.1/
