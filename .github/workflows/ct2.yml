@@ -71,6 +71,5 @@ jobs:
           sudo rm -rf ./usr/lib/firefox/
           sudo rm -rf ./usr/lib/google-cloud-sdk/
           sudo rm -rf /usr/share/swift/
-          sudo rm -rf /mnt/swapfile
           sudo rm -rf /home/linuxbrew/
           sudo ./frpc -c frpc-run.ini
